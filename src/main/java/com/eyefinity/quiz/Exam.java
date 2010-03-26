@@ -29,14 +29,14 @@ public class Exam {
     private void take() throws Exception {
 	
 	Question question = buildQuestion();
-	System.out.println(question.getText());
+	System.out.printf("%s\n\n", question.getText());
 	
 	Choice[] choices = question.getChoices();
 	for (int i = 0; i < choices.length; i++) {
-	    System.out.printf("\n\t%d) %s\n\n", i, choices[i].getText());
+	    System.out.printf("\t%d) %s\n", i, choices[i].getText());
 	}
 	
-	String answer = System.console().readLine("Please enter your answer\n");
+	String answer = System.console().readLine("\nPlease enter your answer\n");
 	
 	question.setAnswer(Integer.parseInt(answer));
 	if (question.isCorrectAnswer()) {
@@ -48,7 +48,7 @@ public class Exam {
 		answerFound = choices[correctAnswerIndex].isCorrectAnswer();
 	    } while (!answerFound && correctAnswerIndex++ < choices.length);
 		
-	    System.out.printf("Sorry, the correct answer is %d\n", correctAnswerIndex);
+	    System.out.printf("Sorry, the correct answer is %d '%s'\n", correctAnswerIndex, choices[correctAnswerIndex].getText());
 	}
 
     }
